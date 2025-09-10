@@ -1,0 +1,10 @@
+# Ignorar carpetas de PyInstaller
+/dist/
+/build/
+*.spec
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env/
+.venv/

@@ -1,52 +1,61 @@
-# Python Installer
+# Whisper App Windows
 
-This project provides a simple installer application that checks if Python is installed on the system and installs it if necessary. The installer is designed to be user-friendly and automates the process of ensuring that Python is available for use.
+Este proyecto permite transcribir y traducir archivos de audio y video usando Whisper, con una interfaz gráfica amigable y un instalador automático de dependencias.
 
-## Project Structure
+## Estructura del proyecto
 
 ```
 python-installer
 ├── src
-│   ├── installer.py          # Main entry point for the installer application
-│   ├── python_installer.py   # Logic for downloading and installing Python
+│   ├── whisper_gui.py        # Interfaz gráfica principal
+│   ├── installer.py          # Verifica e instala Python si es necesario
+│   ├── python_installer.py   # Lógica para descargar e instalar Python
 │   └── utils
-│       └── check_python.py   # Utility functions to check Python installation
-├── requirements.txt          # List of dependencies required for the project
-└── README.md                 # Documentation for the project
+│       └── check_python.py   # Utilidades para verificar Python
+├── requirements.txt          # Dependencias del proyecto
+├── .gitignore                # Ignora archivos generados
+└── README.md                 # Documentación
 ```
 
-## Installation Instructions
+## Instalación y uso
 
-1. **Clone the repository:**
+1. **Clona el repositorio:**
    ```
-   git clone <repository-url>
-   cd python-installer
+   git clone https://github.com/caponte/whisper-app-windows.git
+   cd whisper-app-windows
    ```
 
-2. **Install dependencies:**
-   It is recommended to create a virtual environment before installing dependencies.
+2. **Instala las dependencias:**
+   Se recomienda usar un entorno virtual.
    ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   python -m venv .venv
+   .venv\Scripts\activate  # En Windows
    pip install -r requirements.txt
    ```
 
-3. **Run the installer:**
-   Execute the main installer script to check for Python installation and install it if necessary.
+3. **Genera el ejecutable:**
    ```
-   python src/installer.py
+   pyinstaller --onefile --name carloscoding src/whisper_gui.py
    ```
+   El ejecutable se creará en la carpeta `dist` como `carloscoding.exe`.
 
-## Usage Guidelines
+4. **Ejecuta la aplicación:**
+   - Puedes ejecutar `carloscoding.exe` directamente. El programa:
+     - Verifica e instala Python si es necesario.
+     - Verifica e instala FFmpeg y Whisper-CLI usando Chocolatey.
+     - Lanza la interfaz gráfica para transcribir archivos.
 
-- The installer will automatically check if Python is installed on your system.
-- If Python is not found, it will download and install the latest version.
-- Follow any prompts that appear during the installation process.
+## Requisitos
+- Windows 10/11
+- Permisos de administrador para instalar dependencias
+- Chocolatey (si no está instalado, la app intentará instalarlo)
 
-## Contributing
+## Notas importantes
+- Si copias solo el `.exe` a otra PC, asegúrate de tener permisos de administrador y acceso a internet para instalar dependencias.
+- El instalador no incluye FFmpeg ni Whisper-CLI, pero los instala automáticamente si faltan.
 
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
+## Contribuir
+¡Las contribuciones son bienvenidas! Abre un issue o pull request para sugerencias o mejoras.
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
+## Licencia
+MIT License.
